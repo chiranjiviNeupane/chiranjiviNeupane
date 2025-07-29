@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chiranjivi Neupane | Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Chiranjivi Neupane</h1>
+    <h2>Software Developer | Problem Solver | Tech Enthusiast</h2>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode">
+  <i class="fas fa-moon"></i>
+</button>
+<button class="pdf-btn" onclick="downloadPDF()">
+  <i class="fas fa-file-download"></i> Download PDF
+</button>
+
+
+  </nav>
+
+  <section id="about">
+    <h2 class="section-title">👋 About Me</h2>
+    <div class="content-box">
+      <p>
+        Hello! I'm <strong>Username Lastname</strong>, a passionate software developer with over 3 years of experience building web and backend systems that solve real-world problems. With a solid foundation in Computer Science and a Master's degree in Information Systems, I bridge the gap between business goals and technical execution.
+      </p>
+      <p>
+        I specialize in full-stack development and have contributed to projects ranging from enterprise SaaS platforms to startup MVPs. My philosophy? <em>Clean, scalable, and maintainable code</em>. I enjoy collaborating with cross-functional teams and mentoring junior developers.
+      </p>
+      <p>
+        Outside of work, I’m a tech blogger, open-source contributor, and occasional hackathon participant. I’m currently deep-diving into system design, distributed architecture, and AI integration.
+      </p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">🎓 Education</h2>
+    <div class="content-box">
+      <h3>Master of Information Systems</h3>
+      <p><strong>University of Southern Queensland (USQ)</strong> – Graduated 2021</p>
+      <ul>
+        <li>Specialized in Enterprise Systems, IT Management, and Advanced Data Analytics</li>
+        <li>Thesis: <em>"Cloud-based Microservices and Their Role in Scalable Software Architecture"</em></li>
+        <li>Graduated with Distinction</li>
+      </ul>
+    </div>
+    <div class="content-box">
+      <h3>Bachelor of Information Technology</h3>
+      <p><strong>Purbanchal University</strong> – Graduated 2018</p>
+      <ul>
+        <li>Focused on core CS principles: data structures, algorithms, databases, and networking</li>
+        <li>Capstone Project: Developed a Library Management System using JavaFX and MySQL</li>
+        <li>Active in tech clubs and programming competitions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">💼 Experience</h2>
+    <div class="content-box">
+      <h3>Software Engineer – XYZ Co.</h3>
+      <p><em>March 2022 – Present</em></p>
+      <ul>
+        <li>Designed and implemented scalable APIs used by 50k+ monthly users</li>
+        <li>Led migration of legacy systems to microservices using Node.js and Docker</li>
+        <li>Collaborated with Product and QA teams in agile sprints; improved sprint velocity by 20%</li>
+        <li>Mentored 2 junior developers and introduced peer code review practices</li>
+        <li>Stack: React, Node.js, PostgreSQL, AWS, Docker, GitHub Actions</li>
+      </ul>
+    </div>
+    <div class="content-box">
+      <h3>Software Developer – ZCB Co.</h3>
+      <p><em>August 2021 – March 2022</em></p>
+      <ul>
+        <li>Developed internal tooling to automate reporting, reducing manual hours by 70%</li>
+        <li>Worked on backend APIs and integrated third-party services using REST and OAuth</li>
+        <li>Improved application performance by refactoring inefficient SQL queries</li>
+        <li>Tools: Python, Flask, SQLAlchemy, MySQL, Jenkins</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">🛠️ Technical Skills</h2>
+    <div class="content-box">
+      <h4>Languages</h4>
+      <p>JavaScript, TypeScript, Python, Java, SQL, Bash</p>
+      <h4>Frameworks & Libraries</h4>
+      <p>React, Node.js, Express, Django, Spring Boot</p>
+      <h4>DevOps & Tools</h4>
+      <p>Docker, AWS (EC2, S3, Lambda), GitHub Actions, Jenkins</p>
+      <h4>Databases</h4>
+      <p>PostgreSQL, MySQL, MongoDB, Firebase</p>
+      <h4>Testing</h4>
+      <p>Jest, Mocha, Selenium, Postman</p>
+      <h4>Soft Skills</h4>
+      <p>Team leadership, Agile methodology, Technical writing, Client communication</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">🚀 Projects</h2>
+    <div class="content-box">
+      <h3>DevTracker</h3>
+      <p>A personal productivity tracker for developers with Pomodoro, time logging, and GitHub integration.</p>
+      <p><strong>Stack:</strong> React, Node.js, Express, MongoDB</p>
+      <p><a href="https://github.com/username/devtracker" target="_blank">GitHub Repo</a></p>
+    </div>
+    <div class="content-box">
+      <h3>OpenResume</h3>
+      <p>An open-source resume builder focused on clean design and Markdown support.</p>
+      <p><strong>Stack:</strong> Vue.js, Firebase Auth, Firestore, Tailwind CSS</p>
+      <p><a href="https://github.com/username/openresume" target="_blank">GitHub Repo</a></p>
+    </div>
+    <div class="content-box">
+      <h3>WeatherCast API</h3>
+      <p>REST API that provides weather data based on location. Built with scalability and caching in mind.</p>
+      <p><strong>Stack:</strong> Python, FastAPI, Redis, OpenWeatherMap API</p>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2 class="section-title">📜 Certifications & Courses</h2>
+    <div class="content-box">
+      <ul>
+        <li><strong>AWS Certified Developer – Associate</strong> (2023)</li>
+        <li><strong>CS50: Introduction to Computer Science</strong> – HarvardX (2022)</li>
+        <li><strong>Modern React with Redux</strong> – Udemy (2021)</li>
+        <li><strong>System Design Primer</strong> – Educative.io (Ongoing)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">📫 Contact</h2>
+    <div class="content-box contact">
+      <p>If you'd like to discuss opportunities, collaborations, or just want to say hi — feel free to connect!</p>
+      <a href="mailto:username.lastname@email.com"><i class="fas fa-envelope"></i>Email</a>
+      <a href="https://linkedin.com/in/usernamelastname" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com/username" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+      <a href="https://yourportfolio.com" target="_blank"><i class="fas fa-globe"></i>Portfolio</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Chiranjivi Neupane • Designed with 💻, ☕ and 🔥 Passion
+  </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+
+</html>
+
