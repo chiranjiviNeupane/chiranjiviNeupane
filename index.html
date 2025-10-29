@@ -9,6 +9,11 @@
     <meta name="description" content="Chiranjivi Neupane - Software Engineer specializing in Java, Spring Boot, Microservices, React.js, and AWS">
     <meta name="keywords" content="Software Engineer, Java Developer, Spring Boot, Microservices, React, AWS, Full Stack Developer">
     <title>Chiranjivi Neupane - Software Engineer</title>
+    
+    <!-- Load custom styles FIRST -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Then load Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,7 +22,27 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Critical inline styles for immediate rendering -->
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe) !important;
+            background-size: 400% 400% !important;
+            animation: gradient 15s ease infinite !important;
+        }
+    </style>
 </head>
 <body class="font-sans antialiased bg-gray-50">
     <!-- Particles Container -->
@@ -54,7 +79,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <section class="gradient-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16" style="background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe); background-size: 400% 400%; animation: gradient 15s ease infinite;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center relative z-10">
             <div class="float-animation mb-8">
                 <div class="w-40 h-40 mx-auto rounded-full bg-white shadow-2xl flex items-center justify-center text-6xl font-bold text-purple-600">
@@ -424,7 +449,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 gradient-bg section-hidden">
+    <section id="contact" class="py-20 gradient-bg section-hidden" style="background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe); background-size: 400% 400%; animation: gradient 15s ease infinite;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-white">Let's Connect</h2>
             <div class="max-w-2xl mx-auto">
