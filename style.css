@@ -47,10 +47,21 @@
     animation: float 3s ease-in-out infinite;
 }
 
-.gradient-bg {
+/* Gradient background - multiple selectors for maximum compatibility */
+.gradient-bg,
+section.gradient-bg,
+.gradient-bg[class*="gradient"] {
     background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe) !important;
     background-size: 400% 400% !important;
     animation: gradient 15s ease infinite !important;
+    min-height: 100vh !important;
+}
+
+/* Fallback for older browsers */
+@supports not (animation: gradient 15s ease infinite) {
+    .gradient-bg {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe) !important;
+    }
 }
 
 .glass-effect {
@@ -258,18 +269,37 @@ nav.glass-effect .text-2xl {
     letter-spacing: 0.5px;
 }
 
-/* Tailwind-like utility classes that might be missing */
-.bg-purple-50 { background-color: #faf5ff; }
-.bg-white { background-color: #ffffff; }
-.text-purple-600 { color: #9333ea; }
-.text-blue-600 { color: #2563eb; }
-.text-gray-700 { color: #374151; }
-.text-gray-800 { color: #1f2937; }
-.text-white { color: #ffffff; }
+/* Critical color and style utilities - ensure these always work */
+.text-white { color: #ffffff !important; }
+.text-purple-600 { color: #9333ea !important; }
+.text-blue-600 { color: #2563eb !important; }
+.text-gray-700 { color: #374151 !important; }
+.text-gray-800 { color: #1f2937 !important; }
+.text-gray-600 { color: #4b5563 !important; }
+.text-gray-500 { color: #6b7280 !important; }
+
+.bg-white { background-color: #ffffff !important; }
+.bg-purple-50 { background-color: #faf5ff !important; }
+.bg-gray-50 { background-color: #f9fafb !important; }
+
 .shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
 .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
 .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
 .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-full { border-radius: 9999px; }
+
+/* Ensure gradient sections have white text */
+.gradient-bg * {
+    color: inherit;
+}
+
+.gradient-bg h1,
+.gradient-bg h2,
+.gradient-bg p,
+.gradient-bg span,
+.gradient-bg a {
+    color: #ffffff;
+}
 
