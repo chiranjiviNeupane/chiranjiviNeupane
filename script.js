@@ -205,9 +205,24 @@ function initNavbarScroll() {
     });
 }
 
+// Force gradient background if not loaded
+function ensureGradientBackground() {
+    const gradientSections = document.querySelectorAll('.gradient-bg');
+    gradientSections.forEach(section => {
+        // Force apply gradient style
+        section.style.background = 'linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe)';
+        section.style.backgroundSize = '400% 400%';
+        section.style.animation = 'gradient 15s ease infinite';
+        console.log('Gradient forcefully applied to section:', section);
+    });
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Portfolio loaded successfully!');
+    
+    // Ensure gradient is applied
+    ensureGradientBackground();
     
     // Check if gradient background is applied
     const heroSection = document.querySelector('.gradient-bg');
@@ -229,5 +244,11 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initSkillCardEffects, 100);
     
     console.log('All components initialized');
+});
+
+// Also ensure on window load
+window.addEventListener('load', function() {
+    console.log('Window fully loaded');
+    ensureGradientBackground();
 });
 
