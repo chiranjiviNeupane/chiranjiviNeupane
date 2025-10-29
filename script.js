@@ -19,7 +19,9 @@ function renderSkills() {
     const skillsContainer = document.querySelector('#skills .grid');
     skills.forEach((skill, index) => {
         const skillCard = document.createElement('div');
-        skillCard.className = 'skill-tag p-6 rounded-lg shadow-lg cursor-pointer bg-gradient-to-br ' + skill.color;
+        // Apply gradient classes correctly
+        const colorClasses = skill.color.split(' ');
+        skillCard.className = `skill-tag p-6 rounded-lg shadow-lg cursor-pointer ${colorClasses.join(' ')}`;
         skillCard.style.animationDelay = `${index * 0.1}s`;
         skillCard.innerHTML = `
             <div class="text-4xl mb-2 text-center">${skill.icon}</div>
@@ -185,16 +187,47 @@ function initSkillCardEffects() {
     });
 }
 
+// Navbar scroll effect
+function initNavbarScroll() {
+    const navbar = document.querySelector('nav.glass-effect');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Portfolio loaded successfully!');
+    
+    // Check if gradient background is applied
+    const heroSection = document.querySelector('.gradient-bg');
+    if (heroSection) {
+        console.log('Gradient background element found');
+        const bgStyle = window.getComputedStyle(heroSection).background;
+        console.log('Background style:', bgStyle);
+    }
+    
     renderSkills();
     type();
     initScrollAnimations();
     initSmoothScrolling();
     initMobileMenu();
     initParticles();
+    initNavbarScroll();
     
     // Add skill card effects after skills are rendered
     setTimeout(initSkillCardEffects, 100);
+    
+    console.log('All components initialized');
 });
 
