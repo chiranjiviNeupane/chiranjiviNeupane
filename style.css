@@ -73,6 +73,70 @@ section.gradient-bg,
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Glass effect specifically for contact section */
+#contact .glass-effect {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+/* Contact button styles - ensure visibility */
+#contact a.bg-white,
+#contact button.bg-white {
+    background-color: #ffffff !important;
+    color: #9333ea !important;
+}
+
+#contact a.bg-white svg,
+#contact button.bg-white svg {
+    color: #9333ea !important;
+}
+
+#contact a.bg-white:hover,
+#contact button.bg-white:hover {
+    background-color: #f3e8ff !important;
+    color: #7e22ce !important;
+}
+
+#contact a.border-white {
+    border: 2px solid #ffffff !important;
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+#contact a.border-white svg {
+    color: #ffffff !important;
+}
+
+#contact a.border-white:hover {
+    background-color: #ffffff !important;
+    color: #9333ea !important;
+}
+
+#contact a.border-white:hover svg {
+    color: #9333ea !important;
+}
+
+#contact button.bg-opacity-20 {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+#contact button.bg-opacity-20 svg {
+    color: #ffffff !important;
+}
+
+#contact button.bg-opacity-20:hover {
+    background-color: #ffffff !important;
+    color: #9333ea !important;
+}
+
+#contact button.bg-opacity-20:hover svg {
+    color: #9333ea !important;
+}
+
 .skill-tag {
     transition: all 0.3s ease;
 }
@@ -106,49 +170,65 @@ section.gradient-bg,
 
 /* Timeline dots removed for cleaner look */
 
-/* Gradient backgrounds for skill cards */
-.from-red-400.to-red-600 {
-    background: linear-gradient(to bottom right, #f87171, #dc2626);
+/* Gradient backgrounds for skill cards - Force apply! */
+.skill-tag {
+    position: relative;
+    overflow: hidden;
 }
 
-.from-green-400.to-green-600 {
-    background: linear-gradient(to bottom right, #4ade80, #16a34a);
+.from-red-400.to-red-600,
+div[class*="from-red-400"] {
+    background: linear-gradient(to bottom right, #f87171, #dc2626) !important;
 }
 
-.from-cyan-400.to-blue-500 {
-    background: linear-gradient(to bottom right, #22d3ee, #3b82f6);
+.from-green-400.to-green-600,
+div[class*="from-green-400"] {
+    background: linear-gradient(to bottom right, #4ade80, #16a34a) !important;
 }
 
-.from-blue-400.to-blue-600 {
-    background: linear-gradient(to bottom right, #60a5fa, #2563eb);
+.from-cyan-400.to-blue-500,
+div[class*="from-cyan-400"] {
+    background: linear-gradient(to bottom right, #22d3ee, #3b82f6) !important;
 }
 
-.from-blue-300.to-blue-500 {
-    background: linear-gradient(to bottom right, #93c5fd, #3b82f6);
+.from-blue-400.to-blue-600,
+div[class*="from-blue-400"][class*="to-blue-600"] {
+    background: linear-gradient(to bottom right, #60a5fa, #2563eb) !important;
 }
 
-.from-orange-400.to-orange-600 {
-    background: linear-gradient(to bottom right, #fb923c, #ea580c);
+.from-blue-300.to-blue-500,
+div[class*="from-blue-300"] {
+    background: linear-gradient(to bottom right, #93c5fd, #3b82f6) !important;
 }
 
-.from-blue-500.to-blue-700 {
-    background: linear-gradient(to bottom right, #3b82f6, #1d4ed8);
+.from-orange-400.to-orange-600,
+div[class*="from-orange-400"][class*="to-orange-600"] {
+    background: linear-gradient(to bottom right, #fb923c, #ea580c) !important;
 }
 
-.from-red-500.to-red-700 {
-    background: linear-gradient(to bottom right, #ef4444, #b91c1c);
+.from-blue-500.to-blue-700,
+div[class*="from-blue-500"][class*="to-blue-700"] {
+    background: linear-gradient(to bottom right, #3b82f6, #1d4ed8) !important;
 }
 
-.from-yellow-400.to-yellow-600 {
-    background: linear-gradient(to bottom right, #facc15, #ca8a04);
+.from-red-500.to-red-700,
+div[class*="from-red-500"][class*="to-red-700"] {
+    background: linear-gradient(to bottom right, #ef4444, #b91c1c) !important;
 }
 
-.from-orange-500.to-orange-700 {
-    background: linear-gradient(to bottom right, #f97316, #c2410c);
+.from-yellow-400.to-yellow-600,
+div[class*="from-yellow-400"] {
+    background: linear-gradient(to bottom right, #facc15, #ca8a04) !important;
 }
 
-.from-red-500.to-red-600 {
-    background: linear-gradient(to bottom right, #ef4444, #dc2626);
+.from-orange-500.to-orange-700,
+div[class*="from-orange-500"][class*="to-orange-700"] {
+    background: linear-gradient(to bottom right, #f97316, #c2410c) !important;
+}
+
+.from-red-500.to-red-600,
+div[class*="from-red-500"][class*="to-red-600"] {
+    background: linear-gradient(to bottom right, #ef4444, #dc2626) !important;
 }
 
 /* Other gradient backgrounds */
@@ -221,24 +301,26 @@ section.gradient-bg,
     background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
 
-/* Navbar specific styles - Ultra smooth glass effect */
+/* Navbar specific styles - More opaque for visibility */
 nav.glass-effect {
     background: linear-gradient(135deg, 
-        rgba(102, 126, 234, 0.65) 0%, 
-        rgba(118, 75, 162, 0.65) 50%,
-        rgba(240, 147, 251, 0.6) 100%) !important;
+        rgba(102, 126, 234, 0.92) 0%, 
+        rgba(118, 75, 162, 0.92) 50%,
+        rgba(240, 147, 251, 0.9) 100%) !important;
     backdrop-filter: blur(20px) saturate(200%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Navbar on scroll - even more transparent */
+/* Navbar on scroll - keep it opaque for visibility */
 nav.glass-effect.scrolled {
     background: linear-gradient(135deg, 
-        rgba(102, 126, 234, 0.55) 0%, 
-        rgba(118, 75, 162, 0.55) 50%,
-        rgba(240, 147, 251, 0.5) 100%) !important;
+        rgba(102, 126, 234, 0.95) 0%, 
+        rgba(118, 75, 162, 0.95) 50%,
+        rgba(240, 147, 251, 0.93) 100%) !important;
+    backdrop-filter: blur(24px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
 }
 
 nav.glass-effect a,
@@ -270,8 +352,16 @@ nav.glass-effect .text-2xl {
 }
 
 /* Critical color and style utilities - ensure these always work */
-.text-white { color: #ffffff !important; }
-.text-purple-600 { color: #9333ea !important; }
+.text-white,
+.text-white * { 
+    color: #ffffff !important; 
+}
+
+.text-purple-600,
+.text-purple-600 * { 
+    color: #9333ea !important; 
+}
+
 .text-blue-600 { color: #2563eb !important; }
 .text-gray-700 { color: #374151 !important; }
 .text-gray-800 { color: #1f2937 !important; }
@@ -282,6 +372,16 @@ nav.glass-effect .text-2xl {
 .bg-purple-50 { background-color: #faf5ff !important; }
 .bg-gray-50 { background-color: #f9fafb !important; }
 
+/* Force background color on body and sections */
+body {
+    background-color: #f9fafb !important;
+}
+
+section#skills,
+section[id="skills"] {
+    background-color: #f9fafb !important;
+}
+
 .shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
 .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
 .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
@@ -290,16 +390,98 @@ nav.glass-effect .text-2xl {
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-full { border-radius: 9999px; }
 
-/* Ensure gradient sections have white text */
-.gradient-bg * {
-    color: inherit;
+/* Mobile responsive utilities */
+@media (max-width: 768px) {
+    /* Make sections visible faster on mobile */
+    .section-hidden {
+        opacity: 0.5 !important;
+        transform: translateY(20px) !important;
+        transition: all 0.5s ease-out !important;
+    }
+    
+    .section-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    /* Ensure Experience section is visible */
+    #experience,
+    #skills,
+    #contact {
+        min-height: auto !important;
+    }
+    
+    /* Make timeline items more compact on mobile */
+    .timeline-item {
+        margin-bottom: 2rem !important;
+    }
+    
+    .timeline-item > div {
+        padding: 1rem !important;
+    }
+    
+    /* Contact buttons responsive */
+    #contact .glass-effect {
+        padding: 1.5rem !important;
+    }
+    
+    #contact h2 {
+        font-size: 2rem !important;
+    }
+    
+    #contact p {
+        font-size: 1rem !important;
+    }
+    
+    /* Button text sizing */
+    #contact a,
+    #contact button {
+        font-size: 0.95rem;
+        padding: 0.875rem 1.5rem !important;
+    }
+    
+    /* Ensure buttons are touch-friendly */
+    #contact a,
+    #contact button {
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+    
+    /* Make experience cards more readable on mobile */
+    #experience h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    #experience .text-lg {
+        font-size: 1rem !important;
+    }
+    
+    /* Ensure proper spacing */
+    #experience .max-w-4xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
+/* Tablet responsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #contact a,
+    #contact button {
+        padding: 1rem 1.75rem !important;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure gradient sections have white text - but not buttons */
 .gradient-bg h1,
 .gradient-bg h2,
-.gradient-bg p,
-.gradient-bg span,
-.gradient-bg a {
+.gradient-bg p:not(#copyMessage) {
+    color: #ffffff !important;
+}
+
+/* Allow buttons to have their own colors */
+.gradient-bg a:not(.bg-white):not(.border-white),
+.gradient-bg button:not(.bg-white):not(.bg-opacity-20) {
     color: #ffffff;
 }
 
