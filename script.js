@@ -14,14 +14,35 @@ const skills = [
     { name: 'Angular', color: 'from-red-500 to-red-600', icon: '🅰️' }
 ];
 
+// Color map for direct gradient application
+const gradientMap = {
+    'from-red-400 to-red-600': 'linear-gradient(to bottom right, #f87171, #dc2626)',
+    'from-green-400 to-green-600': 'linear-gradient(to bottom right, #4ade80, #16a34a)',
+    'from-cyan-400 to-blue-500': 'linear-gradient(to bottom right, #22d3ee, #3b82f6)',
+    'from-blue-400 to-blue-600': 'linear-gradient(to bottom right, #60a5fa, #2563eb)',
+    'from-blue-300 to-blue-500': 'linear-gradient(to bottom right, #93c5fd, #3b82f6)',
+    'from-orange-400 to-orange-600': 'linear-gradient(to bottom right, #fb923c, #ea580c)',
+    'from-blue-500 to-blue-700': 'linear-gradient(to bottom right, #3b82f6, #1d4ed8)',
+    'from-red-500 to-red-700': 'linear-gradient(to bottom right, #ef4444, #b91c1c)',
+    'from-yellow-400 to-yellow-600': 'linear-gradient(to bottom right, #facc15, #ca8a04)',
+    'from-orange-500 to-orange-700': 'linear-gradient(to bottom right, #f97316, #c2410c)',
+    'from-red-500 to-red-600': 'linear-gradient(to bottom right, #ef4444, #dc2626)'
+};
+
 // Render Skills
 function renderSkills() {
     const skillsContainer = document.querySelector('#skills .grid');
     skills.forEach((skill, index) => {
         const skillCard = document.createElement('div');
-        // Apply gradient classes correctly
         const colorClasses = skill.color.split(' ');
         skillCard.className = `skill-tag p-6 rounded-lg shadow-lg cursor-pointer ${colorClasses.join(' ')}`;
+        
+        // FORCE apply gradient via inline style as backup
+        const gradientKey = skill.color;
+        if (gradientMap[gradientKey]) {
+            skillCard.style.background = gradientMap[gradientKey];
+        }
+        
         skillCard.style.animationDelay = `${index * 0.1}s`;
         skillCard.innerHTML = `
             <div class="text-4xl mb-2 text-center">${skill.icon}</div>
@@ -29,6 +50,8 @@ function renderSkills() {
         `;
         skillsContainer.appendChild(skillCard);
     });
+    
+    console.log('Skills rendered with forced gradients');
 }
 
 // Typing Animation
@@ -70,9 +93,11 @@ function type() {
 
 // Scroll Animations
 function initScrollAnimations() {
+    // Mobile-friendly observer options
+    const isMobile = window.innerWidth < 768;
     const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: isMobile ? 0.05 : 0.15, // Much lower threshold for mobile
+        rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px' // Smaller margin for mobile
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -80,6 +105,7 @@ function initScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('section-visible');
                 entry.target.classList.remove('section-hidden');
+                console.log('Section visible:', entry.target.id || entry.target.className);
             }
         });
     }, observerOptions);
@@ -87,6 +113,38 @@ function initScrollAnimations() {
     document.querySelectorAll('.section-hidden').forEach(section => {
         observer.observe(section);
     });
+    
+    console.log('Scroll animations initialized with mobile:', isMobile);
+}
+
+// Fallback: Show all sections after a delay if observer doesn't work
+function ensureAllSectionsVisible() {
+    setTimeout(() => {
+        document.querySelectorAll('.section-hidden').forEach(section => {
+            const rect = section.getBoundingClientRect();
+            // If section is in viewport or has been scrolled past
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.classList.add('section-visible');
+                section.classList.remove('section-hidden');
+                console.log('Fallback: Making section visible', section.id);
+            }
+        });
+    }, 2000); // Check after 2 seconds
+}
+
+// Also check on scroll
+let scrollTimeout;
+function checkVisibilityOnScroll() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        document.querySelectorAll('.section-hidden').forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+                section.classList.add('section-visible');
+                section.classList.remove('section-hidden');
+            }
+        });
+    }, 100);
 }
 
 // Smooth Scrolling
@@ -220,6 +278,7 @@ function ensureGradientBackground() {
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Portfolio loaded successfully!');
+    console.log('Screen width:', window.innerWidth, 'Mobile:', window.innerWidth < 768);
     
     // Ensure gradient is applied
     ensureGradientBackground();
@@ -242,6 +301,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add skill card effects after skills are rendered
     setTimeout(initSkillCardEffects, 100);
+    
+    // Ensure sections become visible (fallback)
+    ensureAllSectionsVisible();
+    
+    // Add scroll listener for visibility check
+    window.addEventListener('scroll', checkVisibilityOnScroll, { passive: true });
     
     console.log('All components initialized');
 });
