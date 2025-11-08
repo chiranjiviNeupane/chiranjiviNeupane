@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StabilityCare - Empowering independence through compassionate support. Providing disability support, aged care, and community assistance services.">
+    <title>StabilityCare - Compassionate Support Services</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="font-sans text-gray-800">
+
+    <!-- ======================== HEADER / NAVIGATION ======================== -->
+    <header id="header" class="fixed w-full top-0 z-50 bg-white shadow-md transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <i class="fas fa-hands-helping text-blue-600 text-3xl mr-3"></i>
+                    <span class="text-2xl font-bold text-blue-600">StabilityCare</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 font-medium">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 font-medium">About</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 font-medium">Services</a>
+                    <a href="#careers" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 font-medium">Careers</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-lg p-2" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">About</a>
+                <a href="#services" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
+                <a href="#careers" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Careers</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ======================== HERO SECTION ======================== -->
+    <section id="home" class="hero-gradient pt-32 pb-20 px-6 text-white">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 fade-in">
+                Empowering Independence Through Compassionate Support
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto fade-in">
+                At StabilityCare, we believe everyone deserves dignity, respect, and the support they need to live their best life. We provide quality disability support, aged care, and community services tailored to individual needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <a href="#about" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 shadow-lg">
+                    Learn More
+                </a>
+                <a href="#contact" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== ABOUT SECTION ======================== -->
+    <section id="about" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                        About StabilityCare
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Founded on the principles of compassion, respect, and excellence, StabilityCare has been a trusted partner in the community for providing person-centered care and support services.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Our dedicated team of professionals is committed to empowering individuals to achieve their goals, maintain their independence, and participate fully in their communities. We understand that every person is unique, which is why we tailor our services to meet individual needs and preferences.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Whether it's disability support, aged care, or community assistance, we're here to provide the stability and care you can count on.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-600 text-2xl mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Person-Centered Care</h4>
+                                <p class="text-gray-600">Tailored to your unique needs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-600 text-2xl mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Experienced Team</h4>
+                                <p class="text-gray-600">Qualified and compassionate staff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Placeholder -->
+                <div class="fade-in">
+                    <div class="rounded-lg overflow-hidden shadow-xl h-96 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-heart text-blue-600 text-6xl mb-4"></i>
+                            <p class="text-blue-600 text-xl font-semibold">Caring for Our Community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SERVICES SECTION ======================== -->
+    <section id="services" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Our Services
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    We offer a comprehensive range of support services designed to help you live independently and confidently.
+                </p>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Disability Support Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 text-center fade-in">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-wheelchair text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Disability Support</h3>
+                    <p class="text-gray-600 mb-6">
+                        Personalized assistance to help you achieve your goals and live independently with dignity and respect.
+                    </p>
+                    <a href="#contact" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Aged Care Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 text-center fade-in">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-user-friends text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Aged Care</h3>
+                    <p class="text-gray-600 mb-6">
+                        Compassionate care and support for seniors, helping maintain independence and quality of life at home.
+                    </p>
+                    <a href="#contact" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Community Participation Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 text-center fade-in">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Community Participation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Support to engage in community activities, build connections, and participate in social and recreational programs.
+                    </p>
+                    <a href="#contact" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Respite Services Card -->
+                <div class="service-card bg-white rounded-lg shadow-lg p-8 text-center fade-in">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-home text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Respite Services</h3>
+                    <p class="text-gray-600 mb-6">
+                        Temporary relief care for families and carers, providing peace of mind while ensuring quality support continues.
+                    </p>
+                    <a href="#contact" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CAREERS SECTION ======================== -->
+    <section id="careers" class="py-20 px-6 bg-gradient-to-r from-blue-50 to-blue-100">
+        <div class="container mx-auto text-center">
+            <div class="max-w-3xl mx-auto fade-in">
+                <i class="fas fa-briefcase text-blue-600 text-5xl mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                    Join Our Team
+                </h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Are you passionate about making a difference in people's lives? StabilityCare is always looking for dedicated, compassionate individuals to join our growing team. We offer competitive wages, ongoing training, and a supportive work environment.
+                </p>
+                <p class="text-lg text-gray-600 mb-10">
+                    Whether you're an experienced support worker or just starting your career in community services, we'd love to hear from you.
+                </p>
+                <a href="mailto:careers@stabilitycare.com" class="inline-block bg-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                    Apply Now <i class="fas fa-paper-plane ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== CONTACT SECTION ======================== -->
+    <section id="contact" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Get In Touch
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Have questions or want to learn more about our services? We're here to help. Send us a message and we'll get back to you as soon as possible.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300"
+                                placeholder="John Smith">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300"
+                                placeholder="john@example.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300"
+                                placeholder="(123) 456-7890">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Message *</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 resize-none"
+                                placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+                        <button type="submit" 
+                            class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Map and Contact Info -->
+                <div class="fade-in">
+                    <!-- Google Maps Placeholder -->
+                    <div class="rounded-lg overflow-hidden shadow-lg mb-6 h-64">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093743!2d144.9537363158044!3d-37.81720974201446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1234567890123!5m2!1sen!2sau" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="StabilityCare Office Location">
+                        </iframe>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="bg-blue-50 rounded-lg p-6 space-y-4">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Address</p>
+                                <p class="text-gray-600">123 Care Street, Community City, ST 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone text-blue-600 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Phone</p>
+                                <p class="text-gray-600">(123) 456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-blue-600 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Email</p>
+                                <p class="text-gray-600">info@stabilitycare.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-blue-600 text-xl mr-4 mt-1"></i>
+                            <div>
+                                <p class="font-semibold text-gray-800">Business Hours</p>
+                                <p class="text-gray-600">Mon - Fri: 8:00 AM - 6:00 PM</p>
+                                <p class="text-gray-600">Sat: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer class="bg-gray-800 text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-blue-400 transition duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-blue-400 transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="hover:text-blue-400 transition duration-300">Services</a></li>
+                        <li><a href="#careers" class="hover:text-blue-400 transition duration-300">Careers</a></li>
+                        <li><a href="#contact" class="hover:text-blue-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                            <span>123 Care Street, Community City, ST 12345</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone mr-3 mt-1"></i>
+                            <span>(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mr-3 mt-1"></i>
+                            <span>info@stabilitycare.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <p class="mb-4">Stay connected with us on social media for updates and community stories.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p>&copy; 2025 StabilityCare. All rights reserved. | <a href="#" class="hover:text-blue-400 transition duration-300">Privacy Policy</a> | <a href="#" class="hover:text-blue-400 transition duration-300">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="./script.js"></script>
+</body>
+</html>
+
