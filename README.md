@@ -1,132 +1,60 @@
-# Chiranjivi Neupane - Portfolio Website
+# Chiranjivi Neupane
 
-A modern, dynamic portfolio website showcasing professional experience, skills, and education.
+Backend Software Engineer based in Sydney, Australia — 5+ years across enterprise and platform environments, specializing in Java, Spring Boot, Go, microservices and AWS.
 
-## 🌟 Features
+I own services end-to-end, from architecture through production support, with a focus on CI/CD, automated testing, and resolving critical incidents under pressure. Currently building backend systems at **Team Internet**.
 
-- **Animated Gradient Background** - Beautiful purple/pink gradient that animates smoothly
-- **Responsive Design** - Works perfectly on desktop, tablet, and mobile devices
-- **Interactive Skill Cards** - Hover effects and click animations
-- **Smooth Animations** - Scroll-triggered animations and typing effects
-- **Professional Timeline** - Visual representation of work experience and education
-- **Contact Integration** - Direct email and LinkedIn links
+**Status:** Open to select opportunities
 
-## 🛠️ Technologies Used
+## What I work with
 
-- HTML5
-- CSS3 (with custom animations)
-- JavaScript (Vanilla)
-- Tailwind CSS (via CDN)
+- **Backend:** Java, Spring Boot, Go, Grails, REST APIs, Microservices
+- **Cloud & DevOps:** AWS, Docker, Jenkins, Bamboo, Rancher, CI/CD
+- **Data:** PostgreSQL, MySQL
+- **Testing:** JUnit, Mockito, Cucumber, BDD
+- **Security:** Spring Security, JWT, Keycloak
+- **Observability:** Splunk, Grafana
 
-## 📁 File Structure
+## Portfolio
 
-```
-├── index.html          # Main HTML file
-├── styles.css          # Custom CSS with animations and gradients
-├── script.js           # JavaScript for interactivity
-└── README.md          # This file
-```
+**[chiranjivineupane.com.np](https://www.chiranjivineupane.com.np/)** — this repository is also the source for that site.
 
-## 🚀 Deployment to GitHub Pages
+## Contact
 
-### Method 1: Using GitHub Repository Settings
-
-1. **Create a GitHub repository** (if you haven't already)
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git push -u origin main
-   ```
-
-2. **Enable GitHub Pages**
-   - Go to your repository on GitHub
-   - Click on **Settings**
-   - Scroll down to **Pages** section
-   - Under **Source**, select `main` branch
-   - Click **Save**
-   - Your site will be published at: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
-
-3. **Wait for deployment** (usually takes 1-2 minutes)
-   - Check the Actions tab to see deployment status
-   - Once complete, visit your site URL
-
-### Method 2: Using GitHub Desktop
-
-1. Open GitHub Desktop
-2. File → Add Local Repository → Select your folder
-3. Publish repository to GitHub
-4. Follow steps 2-3 from Method 1
-
-## 🔧 Troubleshooting
-
-### Issue: Gradient backgrounds appear white
-
-**Solution:** The `styles.css` file contains `!important` declarations to ensure gradients load properly. Make sure:
-- `styles.css` is loaded AFTER Tailwind CSS CDN
-- All three files (index.html, styles.css, script.js) are in the same directory
-- Clear your browser cache (Ctrl+F5 or Cmd+Shift+R)
-
-### Issue: Animations not working
-
-**Solution:**
-- Ensure JavaScript is enabled in your browser
-- Check browser console for errors (F12)
-- Verify `script.js` is loading correctly
-
-### Issue: Skills cards not displaying
-
-**Solution:**
-- Open browser console (F12)
-- Check for JavaScript errors
-- Ensure the `renderSkills()` function is being called
-
-## 🎨 Customization
-
-### Changing Colors
-
-Edit `styles.css` to modify the gradient background:
-
-```css
-.gradient-bg {
-    background: linear-gradient(-45deg, #YOUR_COLOR1, #YOUR_COLOR2, #YOUR_COLOR3, #YOUR_COLOR4) !important;
-}
-```
-
-### Modifying Skills
-
-Edit the `skills` array in `script.js`:
-
-```javascript
-const skills = [
-    { name: 'Your Skill', color: 'from-COLOR1 to-COLOR2', icon: '🎯' },
-    // Add more skills...
-];
-```
-
-### Updating Experience
-
-Modify the Experience section in `index.html` to add/remove positions.
-
-## 📧 Contact
-
-- **Email:** chiranjivi.neupane96@gmail.com
-- **LinkedIn:** [linkedin.com/in/chiranjivi-neupane-315104123](https://www.linkedin.com/in/chiranjivi-neupane-315104123)
-- **Location:** Sydney, NSW, Australia
-
-## 📄 License
-
-This project is open source and available for personal use.
-
-## 🙏 Acknowledgments
-
-- Tailwind CSS for utility classes
-- Font Awesome concepts for icons
-- Modern web design principles
+- Email: [chiranjivi.neupane96@gmail.com](mailto:chiranjivi.neupane96@gmail.com)
+- LinkedIn: [linkedin.com/in/chiranjivi-neupane-315104123](https://www.linkedin.com/in/chiranjivi-neupane-315104123)
 
 ---
 
-Made with ❤️ by Chiranjivi Neupane
+## About this repository
 
+This repo doubles as both my GitHub profile README and the source for my portfolio site, deployed via GitHub Pages.
+
+### Stack
+
+Plain HTML, CSS and vanilla JavaScript — no build step, no framework, no bundler. Fonts are loaded from Google Fonts (Inter, JetBrains Mono).
+
+### Structure
+
+```
+├── index.html      # All page content and structure
+├── style.css       # Design system (tokens, layout, components, dark mode, print, reduced motion)
+├── script.js       # Nav, scroll behavior, reveal animations, duration calculations, copy-to-clipboard
+├── favicon.svg     # Site favicon (CN monogram)
+├── robots.txt      # Crawler rules
+├── sitemap.xml     # Sitemap for search engines
+├── CNAME           # Custom domain for GitHub Pages
+└── README.md       # This file
+```
+
+### Running locally
+
+No build step required — open `index.html` directly in a browser, or serve the folder with any static file server, e.g.:
+
+```bash
+npx serve .
+```
+
+### Deployment
+
+Hosted on GitHub Pages, serving from the `main` branch root. The `CNAME` file points the custom domain (`www.chiranjivineupane.com.np`) at this repo; DNS is managed separately with the domain registrar.
