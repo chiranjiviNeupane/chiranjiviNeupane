@@ -1,319 +1,227 @@
-// Skills Data
-const skills = [
-    { name: 'Java', color: 'from-red-400 to-red-600', icon: '☕' },
-    { name: 'Spring Boot', color: 'from-green-400 to-green-600', icon: '🍃' },
-    { name: 'React.js', color: 'from-cyan-400 to-blue-500', icon: '⚛️' },
-    { name: 'Microservices', color: 'from-blue-400 to-blue-600', icon: '🔧' },
-    { name: 'Docker', color: 'from-blue-300 to-blue-500', icon: '🐳' },
-    { name: 'AWS', color: 'from-orange-400 to-orange-600', icon: '☁️' },
-    { name: 'MySQL', color: 'from-blue-500 to-blue-700', icon: '🗄️' },
-    { name: 'GIT', color: 'from-red-500 to-red-700', icon: '📦' },
-    { name: 'JavaScript', color: 'from-yellow-400 to-yellow-600', icon: '⚡' },
-    { name: 'HTML', color: 'from-orange-500 to-orange-700', icon: '🌐' },
-    { name: 'CSS', color: 'from-blue-400 to-blue-600', icon: '🎨' },
-    { name: 'Angular', color: 'from-red-500 to-red-600', icon: '🅰️' }
-];
+// Technical writing articles (empty for now; add entries here as they're published).
+// Each entry: { title, description, url, date }
+const articles = [];
 
-// Color map for direct gradient application
-const gradientMap = {
-    'from-red-400 to-red-600': 'linear-gradient(to bottom right, #f87171, #dc2626)',
-    'from-green-400 to-green-600': 'linear-gradient(to bottom right, #4ade80, #16a34a)',
-    'from-cyan-400 to-blue-500': 'linear-gradient(to bottom right, #22d3ee, #3b82f6)',
-    'from-blue-400 to-blue-600': 'linear-gradient(to bottom right, #60a5fa, #2563eb)',
-    'from-blue-300 to-blue-500': 'linear-gradient(to bottom right, #93c5fd, #3b82f6)',
-    'from-orange-400 to-orange-600': 'linear-gradient(to bottom right, #fb923c, #ea580c)',
-    'from-blue-500 to-blue-700': 'linear-gradient(to bottom right, #3b82f6, #1d4ed8)',
-    'from-red-500 to-red-700': 'linear-gradient(to bottom right, #ef4444, #b91c1c)',
-    'from-yellow-400 to-yellow-600': 'linear-gradient(to bottom right, #facc15, #ca8a04)',
-    'from-orange-500 to-orange-700': 'linear-gradient(to bottom right, #f97316, #c2410c)',
-    'from-red-500 to-red-600': 'linear-gradient(to bottom right, #ef4444, #dc2626)'
-};
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Render Skills
-function renderSkills() {
-    const skillsContainer = document.querySelector('#skills .grid');
-    skills.forEach((skill, index) => {
-        const skillCard = document.createElement('div');
-        const colorClasses = skill.color.split(' ');
-        skillCard.className = `skill-tag p-6 rounded-lg shadow-lg cursor-pointer ${colorClasses.join(' ')}`;
-        
-        // FORCE apply gradient via inline style as backup
-        const gradientKey = skill.color;
-        if (gradientMap[gradientKey]) {
-            skillCard.style.background = gradientMap[gradientKey];
-        }
-        
-        skillCard.style.animationDelay = `${index * 0.1}s`;
-        skillCard.innerHTML = `
-            <div class="text-4xl mb-2 text-center">${skill.icon}</div>
-            <div class="text-white font-semibold text-center">${skill.name}</div>
-        `;
-        skillsContainer.appendChild(skillCard);
-    });
-    
-    console.log('Skills rendered with forced gradients');
-}
+// Mobile navigation toggle
+function initMobileNav() {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileNav');
+    if (!toggle || !menu) return;
 
-// Typing Animation
-const texts = [
-    'Software Engineer',
-    'Full-Stack Developer',
-    'Java Enthusiast',
-    'Problem Solver'
-];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typedTextElement = document.getElementById('typedText');
+    const focusableLinks = () => Array.from(menu.querySelectorAll('a'));
 
-function type() {
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typeSpeed = 500;
-    }
-
-    setTimeout(type, typeSpeed);
-}
-
-// Scroll Animations
-function initScrollAnimations() {
-    // Mobile-friendly observer options
-    const isMobile = window.innerWidth < 768;
-    const observerOptions = {
-        threshold: isMobile ? 0.05 : 0.15, // Much lower threshold for mobile
-        rootMargin: isMobile ? '0px 0px -50px 0px' : '0px 0px -100px 0px' // Smaller margin for mobile
+    const openMenu = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.hidden = false;
+        const links = focusableLinks();
+        if (links.length) links[0].focus();
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('section-visible');
-                entry.target.classList.remove('section-hidden');
-                console.log('Section visible:', entry.target.id || entry.target.className);
-            }
-        });
-    }, observerOptions);
+    const closeMenu = ({ returnFocus = false } = {}) => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+        if (returnFocus) toggle.focus();
+    };
 
-    document.querySelectorAll('.section-hidden').forEach(section => {
-        observer.observe(section);
+    toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) closeMenu(); else openMenu();
     });
-    
-    console.log('Scroll animations initialized with mobile:', isMobile);
+
+    focusableLinks().forEach(link => {
+        link.addEventListener('click', () => closeMenu());
+    });
+
+    menu.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            closeMenu({ returnFocus: true });
+            return;
+        }
+        if (e.key !== 'Tab') return;
+
+        const links = focusableLinks();
+        if (!links.length) return;
+        const first = links[0];
+        const last = links[links.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
 }
 
-// Fallback: Show all sections after a delay if observer doesn't work
-function ensureAllSectionsVisible() {
-    setTimeout(() => {
-        document.querySelectorAll('.section-hidden').forEach(section => {
-            const rect = section.getBoundingClientRect();
-            // If section is in viewport or has been scrolled past
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                section.classList.add('section-visible');
-                section.classList.remove('section-hidden');
-                console.log('Fallback: Making section visible', section.id);
-            }
-        });
-    }, 2000); // Check after 2 seconds
-}
-
-// Also check on scroll
-let scrollTimeout;
-function checkVisibilityOnScroll() {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        document.querySelectorAll('.section-hidden').forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 50) {
-                section.classList.add('section-visible');
-                section.classList.remove('section-hidden');
-            }
-        });
-    }, 100);
-}
-
-// Smooth Scrolling
+// Smooth scroll with focus management for accessibility
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (!target) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                // Close mobile menu if open
-                document.getElementById('mobileMenu').classList.add('hidden');
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+        });
+    });
+}
+
+// Highlight the active nav link based on scroll position
+function initActiveNavTracking() {
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!sections.length || !navLinks.length) return;
+
+    const linkFor = id => Array.from(navLinks).find(link => link.getAttribute('href') === `#${id}`);
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const link = linkFor(entry.target.id);
+            if (!link) return;
+            if (entry.isIntersecting) {
+                navLinks.forEach(l => l.removeAttribute('aria-current'));
+                link.setAttribute('aria-current', 'true');
             }
         });
-    });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach(section => observer.observe(section));
 }
 
-// Mobile Menu Toggle
-function initMobileMenu() {
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    document.querySelectorAll('.mobile-menu-item').forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-    });
-}
-
-// Particles Animation
-function createParticle() {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.width = Math.random() * 5 + 2 + 'px';
-    particle.style.height = particle.style.width;
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.background = `rgba(255, 255, 255, ${Math.random() * 0.5})`;
-    particle.style.animation = `float ${Math.random() * 3 + 2}s ease-in-out infinite`;
-    particle.style.animationDelay = Math.random() * 2 + 's';
-    document.getElementById('particles').appendChild(particle);
-
-    setTimeout(() => {
-        particle.remove();
-    }, 5000);
-}
-
-function initParticles() {
-    setInterval(createParticle, 300);
-}
-
-// Copy Email Function
-function copyEmail() {
-    const email = 'chiranjivi.neupane96@gmail.com';
-    const message = document.getElementById('copyMessage');
-    
-    // Try to copy to clipboard
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(() => {
-            message.textContent = 'Email copied to clipboard! ✓';
-            message.style.opacity = '1';
-            setTimeout(() => {
-                message.style.opacity = '0';
-            }, 3000);
-        }).catch(() => {
-            message.textContent = email;
-            message.style.opacity = '1';
-            setTimeout(() => {
-                message.style.opacity = '0';
-            }, 5000);
-        });
-    } else {
-        // Fallback - just show the email
-        message.textContent = email;
-        message.style.opacity = '1';
-        setTimeout(() => {
-            message.style.opacity = '0';
-        }, 5000);
-    }
-}
-
-// Skill Card Click Effect
-function initSkillCardEffects() {
-    document.querySelectorAll('.skill-tag').forEach(tag => {
-        tag.addEventListener('click', function() {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'translateY(-5px) scale(1.05)';
-            }, 100);
-        });
-    });
-}
-
-// Navbar scroll effect
-function initNavbarScroll() {
-    const navbar = document.querySelector('nav.glass-effect');
-    let lastScroll = 0;
-    
+// Sticky header shadow on scroll
+function initHeaderScrollState() {
+    const header = document.getElementById('siteHeader');
+    if (!header) return;
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    }, { passive: true });
+}
+
+// Scroll-reveal animations (progressive enhancement, skipped under reduced motion)
+function initScrollReveal() {
+    if (prefersReducedMotion) return;
+    document.documentElement.classList.add('js-animations');
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+}
+
+// Compute "X yrs Y mos" from YYYY-MM start/end data attributes
+function monthsBetween(startYM, endYM) {
+    const [sy, sm] = startYM.split('-').map(Number);
+    const [ey, em] = endYM.split('-').map(Number);
+    return (ey - sy) * 12 + (em - sm) + 1;
+}
+
+function formatDuration(totalMonths) {
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    const parts = [];
+    if (years > 0) parts.push(`${years} yr${years > 1 ? 's' : ''}`);
+    if (months > 0 || years === 0) parts.push(`${months} mo${months !== 1 ? 's' : ''}`);
+    return parts.join(' ');
+}
+
+function initExperienceDurations() {
+    const now = new Date();
+    const currentYM = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
+    document.querySelectorAll('.timeline-item[data-start]').forEach(item => {
+        const start = item.dataset.start;
+        const endAttr = item.dataset.end;
+        const end = (!endAttr || endAttr === 'present') ? currentYM : endAttr;
+        const durationEl = item.querySelector('.timeline-duration');
+        if (durationEl) {
+            durationEl.textContent = formatDuration(monthsBetween(start, end));
         }
-        
-        lastScroll = currentScroll;
     });
 }
 
-// Force gradient background if not loaded
-function ensureGradientBackground() {
-    const gradientSections = document.querySelectorAll('.gradient-bg');
-    gradientSections.forEach(section => {
-        // Force apply gradient style
-        section.style.background = 'linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe)';
-        section.style.backgroundSize = '400% 400%';
-        section.style.animation = 'gradient 15s ease infinite';
-        console.log('Gradient forcefully applied to section:', section);
-    });
-}
+// Render technical writing articles, or an empty state if none exist yet
+function renderArticles() {
+    const container = document.getElementById('writingList');
+    if (!container) return;
 
-// Initialize all functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio loaded successfully!');
-    console.log('Screen width:', window.innerWidth, 'Mobile:', window.innerWidth < 768);
-    
-    // Ensure gradient is applied
-    ensureGradientBackground();
-    
-    // Check if gradient background is applied
-    const heroSection = document.querySelector('.gradient-bg');
-    if (heroSection) {
-        console.log('Gradient background element found');
-        const bgStyle = window.getComputedStyle(heroSection).background;
-        console.log('Background style:', bgStyle);
+    if (articles.length === 0) {
+        container.innerHTML = `
+            <div class="writing-empty">
+                Articles on backend engineering, distributed systems and enterprise software design are in progress. Check back soon.
+            </div>
+        `;
+        return;
     }
-    
-    renderSkills();
-    type();
-    initScrollAnimations();
+
+    container.innerHTML = articles.map(article => `
+        <article class="writing-card">
+            <h3><a href="${article.url}">${article.title}</a></h3>
+            <p>${article.description}</p>
+        </article>
+    `).join('');
+}
+
+// Footer year
+function initCurrentYear() {
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+// Back-to-top button
+function initBackToTop() {
+    const button = document.getElementById('backToTop');
+    if (!button) return;
+
+    window.addEventListener('scroll', () => {
+        button.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+    }, { passive: true });
+
+    button.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        document.getElementById('main')?.focus();
+    });
+}
+
+// Copy email to clipboard
+function initCopyEmail() {
+    const button = document.getElementById('copyEmailBtn');
+    const message = document.getElementById('copyMessage');
+    if (!button || !message) return;
+
+    const email = 'chiranjivi.neupane96@gmail.com';
+
+    button.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(email);
+            message.textContent = 'Email copied to clipboard.';
+        } catch (err) {
+            message.textContent = email;
+        }
+        setTimeout(() => { message.textContent = ''; }, 4000);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCurrentYear();
+    initMobileNav();
     initSmoothScrolling();
-    initMobileMenu();
-    initParticles();
-    initNavbarScroll();
-    
-    // Add skill card effects after skills are rendered
-    setTimeout(initSkillCardEffects, 100);
-    
-    // Ensure sections become visible (fallback)
-    ensureAllSectionsVisible();
-    
-    // Add scroll listener for visibility check
-    window.addEventListener('scroll', checkVisibilityOnScroll, { passive: true });
-    
-    console.log('All components initialized');
+    initActiveNavTracking();
+    initHeaderScrollState();
+    initScrollReveal();
+    initExperienceDurations();
+    renderArticles();
+    initCopyEmail();
+    initBackToTop();
 });
-
-// Also ensure on window load
-window.addEventListener('load', function() {
-    console.log('Window fully loaded');
-    ensureGradientBackground();
-});
-
