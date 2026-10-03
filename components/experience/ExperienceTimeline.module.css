@@ -1,0 +1,512 @@
+.timeline {
+  position: relative;
+  --rail-h: 150px;
+}
+
+/* ---------- Sticky rail ---------- */
+.railWrap {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 5;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  background: linear-gradient(180deg, rgba(var(--bg-rgb), 0.98) 82%, rgba(var(--bg-rgb), 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.rail {
+  position: relative;
+  height: var(--rail-h);
+  padding: 40px 0 0;
+}
+
+.axis {
+  position: relative;
+  height: 20px;
+}
+
+.tick {
+  position: absolute;
+  top: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  transform: translateX(-50%);
+}
+
+.tick::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 1px;
+  height: 6px;
+  background: var(--line-strong);
+}
+
+.track {
+  position: relative;
+  height: 80px;
+  margin-top: 8px;
+}
+
+.trackLine,
+.trackFill {
+  position: absolute;
+  top: 12px;
+  height: 1px;
+}
+
+.trackLine {
+  left: 0;
+  right: 0;
+  background: var(--line-strong);
+}
+
+.trackFill {
+  right: 0;
+  background: var(--accent);
+}
+
+.bars {
+  position: absolute;
+  inset: 0;
+}
+
+.barItem {
+  position: absolute;
+  top: 0;
+  height: 44px;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.bar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 2px;
+  top: 9px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.28);
+  transition: background-color 0.35s ease;
+}
+
+.bar:hover::before {
+  background: rgba(var(--accent-rgb), 0.55);
+}
+
+.bar[data-active]::before {
+  background: var(--accent);
+}
+
+.barLabel {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.bar[data-active] .barLabel,
+.bar:hover .barLabel {
+  color: var(--text);
+}
+
+.study {
+  position: absolute;
+  top: 52px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  border: 1px dashed rgba(var(--muted-rgb), 0.3);
+  border-radius: 4px;
+  background: repeating-linear-gradient(-45deg, rgba(var(--muted-rgb), 0.08) 0 4px, transparent 4px 8px);
+}
+
+.study span {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.playhead {
+  position: absolute;
+  top: -10px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--signal);
+  pointer-events: none;
+}
+
+.playhead::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: -4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+.playheadLabel {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  /* Sits above the year ticks so it never covers them. */
+  transform: translate(-50%, -24px);
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: var(--bg);
+  background: var(--signal);
+  border-radius: 999px;
+}
+
+/* ---------- Entries ---------- */
+.entries {
+  position: relative;
+}
+
+.entry {
+  padding-block: clamp(48px, 7vw, 88px);
+  border-top: 1px solid var(--line);
+}
+
+.entry:first-child {
+  border-top: 0;
+}
+
+.article {
+  display: grid;
+  grid-template-columns: minmax(200px, 3fr) minmax(0, 9fr);
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.meta {
+  position: sticky;
+  top: calc(var(--header-h) + var(--rail-h) + 32px);
+  align-self: start;
+  display: grid;
+  gap: 6px;
+}
+
+.dot {
+  display: none;
+}
+
+.metaIndex {
+  margin-bottom: 14px;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.entry[data-active] .metaIndex {
+  -webkit-text-stroke-color: var(--accent);
+}
+
+.dates {
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.duration {
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.location {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.content {
+  display: grid;
+  gap: 28px;
+  transition: opacity 0.5s ease;
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.role {
+  font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.at {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.company {
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.subLabel {
+  margin-right: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.highlights {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.highlight {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.highlight p {
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+.focus {
+  padding-top: 4px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ---------- Collapsed (older) roles ---------- */
+.more {
+  display: grid;
+  gap: 16px;
+}
+
+.moreToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  list-style: none;
+  border-radius: 4px;
+}
+
+.moreToggle::-webkit-details-marker {
+  display: none;
+}
+
+.moreToggle::before {
+  content: '+';
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.more[open] > .moreToggle::before {
+  content: '−';
+}
+
+.moreToggle:hover {
+  color: var(--text);
+}
+
+.moreHide,
+.more[open] .moreShow {
+  display: none;
+}
+
+.more[open] .moreHide {
+  display: inline;
+}
+
+.mobileLine {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  /* Only dim once the client has marked an active entry. */
+  .timeline:has(.entry[data-active]) .entry:not([data-active]) .content {
+    opacity: 0.75;
+  }
+}
+
+/* ---------- Narrow: vertical timeline ---------- */
+@media (max-width: 899px) {
+  .railWrap {
+    display: none;
+  }
+
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .mobileLine {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-strong);
+  }
+
+  .mobileFill {
+    height: 100%;
+    background: var(--accent);
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+
+  .entry {
+    padding-block: 0 56px;
+    border-top: 0;
+  }
+
+  .article {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .meta {
+    position: relative;
+    top: 0;
+    gap: 4px;
+  }
+
+  .dot {
+    display: block;
+    position: absolute;
+    left: -30px;
+    top: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .entry[data-active] .dot {
+    border-color: var(--signal);
+    background: var(--signal);
+  }
+
+  .metaIndex {
+    display: none;
+  }
+
+  .highlight {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 0;
+  }
+
+  .focus {
+    padding-top: 0;
+  }
+}
+
+/* ---------- Rail tooltips ---------- */
+.barTooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  z-index: 2;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--text-soft);
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.barTooltip strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.bar:hover .barTooltip,
+.bar:focus-visible .barTooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* First/last bars: keep tooltips inside the rail. */
+.barItem:first-child .barTooltip {
+  left: auto;
+  right: 0;
+  transform: translate(0, 4px);
+}
+
+.barItem:first-child .bar:hover .barTooltip,
+.barItem:first-child .bar:focus-visible .barTooltip {
+  transform: none;
+}
+
+.barItem:last-child .barTooltip {
+  left: 0;
+  transform: translate(0, 4px);
+}
+
+.barItem:last-child .bar:hover .barTooltip,
+.barItem:last-child .bar:focus-visible .barTooltip {
+  transform: none;
+}
+
+@media (max-width: 1099px) {
+  .bar[data-narrow] .barLabel {
+    display: none;
+  }
+}

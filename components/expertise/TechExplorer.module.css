@@ -1,0 +1,289 @@
+.explorer {
+  display: grid;
+  gap: 40px;
+}
+
+.with3D {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+.stage {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  height: min(700px, calc(100vh - var(--header-h) - 48px));
+  min-height: 520px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--bg-raised);
+  overflow: hidden;
+}
+
+.stage > div {
+  position: absolute !important;
+  inset: 0;
+}
+
+.stageHint {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Detail ---------- */
+.detail {
+  display: grid;
+  gap: 14px;
+  padding: 26px 26px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* All cards occupy one cell; only the active one is visible (and focusable). */
+.detailStack {
+  display: grid;
+}
+
+.detailSlot {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.detailSlot[data-visible] {
+  visibility: visible;
+}
+
+.detailSlot .detail {
+  height: 100%;
+  align-content: start;
+}
+
+.detailMeta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.detailTitle {
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.detailText {
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+.detailRow {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.relatedList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.usedAt {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Tabs (3D layout) ---------- */
+.tabs {
+  display: grid;
+  gap: 18px;
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 2px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  padding: 10px 10px 12px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.tab:hover,
+.tab[aria-selected='true'] {
+  color: var(--text);
+}
+
+.tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.tabPanel {
+  display: grid;
+  gap: 12px;
+}
+
+.tabSummary {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Index (list layout) ---------- */
+.index {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.group {
+  display: grid;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.groupCount {
+  color: rgba(var(--muted-rgb), 0.6);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* No 3D: index + sticky detail on wide screens, inline detail on narrow ones. */
+.explorer:not(.with3D) {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+.sideDetail {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+
+.inlineDetail {
+  display: none;
+  margin-top: 6px;
+}
+
+.explorer:not(.with3D) .detail {
+  animation: detailIn 0.45s var(--ease-out);
+}
+
+@media (max-width: 899px) {
+  .explorer:not(.with3D) {
+    grid-template-columns: 1fr;
+  }
+
+  .sideDetail {
+    display: none;
+  }
+
+  .inlineDetail {
+    display: block;
+  }
+}
+
+@keyframes detailIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (max-width: 639px) {
+  /* Larger touch targets. */
+  .chip {
+    min-height: 40px;
+    padding: 8px 14px;
+  }
+
+  .detail {
+    padding: 20px;
+  }
+
+  .detailTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- Usage (current stack vs earlier roles) ---------- */
+.currentDot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+}
+
+/* On the active (filled) chip the dot would vanish into the background. */
+.chip[data-state='active'] .currentDot {
+  background: var(--bg);
+}
+
+.chip[data-usage='earlier']:not([data-state='active']):not([data-state='related']) {
+  color: var(--muted);
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.usage[data-usage='current'] {
+  color: var(--signal);
+}
+
+.usage[data-usage='earlier'] {
+  color: var(--muted);
+}

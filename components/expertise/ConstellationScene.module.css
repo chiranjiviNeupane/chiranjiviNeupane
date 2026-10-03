@@ -1,0 +1,96 @@
+.label {
+  display: inline-block;
+  padding: 3px 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--text-soft);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.label[data-state='active'] {
+  color: var(--bg);
+  background: var(--signal);
+}
+
+.label[data-state='related'] {
+  color: var(--text);
+  background: rgba(var(--accent-rgb), 0.16);
+}
+
+.label[data-state='dim'] {
+  opacity: 0.32;
+}
+
+.category {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent);
+  opacity: 0.32;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.category[data-active] {
+  opacity: 1;
+}
+
+.root {
+  position: absolute;
+  inset: 0;
+}
+
+.labelLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Positioned each frame via transform; hidden until first projection. */
+.anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  will-change: transform;
+}
+
+.anchor > .label {
+  position: absolute;
+  left: 9px;
+  top: 0;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.anchorCentered > .category {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Labels that would overlap a more important one fade back. */
+.anchor[data-occluded] {
+  opacity: 0.12;
+}
+
+.anchor[data-occluded] > .label {
+  pointer-events: none;
+}
+
+.anchor {
+  transition: opacity 0.25s ease;
+}

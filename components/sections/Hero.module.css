@@ -1,0 +1,278 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding-top: var(--header-h);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: 48px 120px;
+}
+
+.inner > * {
+  animation: heroIn 1.1s var(--ease-out) both;
+}
+
+.inner > :nth-child(2) {
+  animation-delay: 80ms;
+}
+.inner > :nth-child(3) {
+  animation-delay: 180ms;
+}
+.inner > :nth-child(4) {
+  animation-delay: 260ms;
+}
+.inner > :nth-child(5) {
+  animation-delay: 340ms;
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-weight: 600;
+}
+
+.name {
+  /* Height-aware too, so landscape phones keep the name on screen. */
+  font-size: clamp(2.5rem, min(8.4vw, 15svh), 7.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  max-width: 9ch;
+  color: var(--text);
+}
+
+.role {
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-soft);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin-top: 22px;
+  font-size: 0.82rem;
+  color: var(--accent);
+}
+
+.stack li + li::before {
+  content: '·';
+  margin: 0 10px;
+  color: var(--muted);
+}
+
+.summary {
+  /* Side-by-side layout: stay in the left column, clear of the visual. */
+  max-width: min(34rem, 46vw);
+  margin-top: 28px;
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.social {
+  display: flex;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--muted);
+  border-radius: 50%;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.socialLink svg {
+  width: 19px;
+  height: 19px;
+}
+
+.socialLink:hover {
+  color: var(--text);
+  background: rgba(var(--muted-rgb), 0.1);
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 28px;
+}
+
+/* Each fact wraps as a unit rather than breaking mid-label. */
+.facts div {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.facts dt {
+  color: var(--muted);
+}
+
+.facts dd {
+  color: var(--text-soft);
+}
+
+.caption {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.caption p {
+  color: var(--text-soft);
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.scrollCue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+  color: var(--muted);
+}
+
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 40px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 100%;
+  height: 40%;
+  background: var(--accent);
+  animation: scrollCue 2.2s var(--ease-out) infinite;
+}
+
+@keyframes scrollCue {
+  to {
+    top: 100%;
+  }
+}
+
+@media (max-width: 1099px) {
+  .caption {
+    display: none;
+  }
+}
+
+@media (max-width: 639px), (max-width: 1099px) and (orientation: portrait) {
+  .hero {
+    justify-content: flex-end;
+  }
+
+  .summary {
+    max-width: 34rem;
+  }
+
+  .inner {
+    padding-top: 34svh;
+    padding-bottom: 96px;
+  }
+
+  .eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .stack {
+    font-size: 0.76rem;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .actions > a {
+    flex: 1 1 auto;
+  }
+
+  .social {
+    margin-left: 0;
+  }
+
+  .facts {
+    gap: 4px 18px;
+  }
+
+  .scrollCue {
+    display: none;
+  }
+}

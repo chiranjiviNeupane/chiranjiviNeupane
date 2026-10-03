@@ -1,0 +1,63 @@
+.backdrop {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 100svh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Fallback sits on the right on desktop, as a band behind the title on mobile. */
+.fallback {
+  position: absolute;
+  inset: 0 0 0 38%;
+  display: grid;
+  place-items: center;
+  opacity: 0.85;
+  transition: opacity 1.2s ease;
+}
+
+.fallbackSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.backdrop[data-ready] .fallback {
+  opacity: 0;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+
+.full .canvas {
+  position: fixed;
+}
+
+.backdrop[data-ready] .canvas {
+  opacity: 1;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 70%, var(--bg) 100%);
+}
+
+@media (max-width: 639px), (max-width: 1099px) and (orientation: portrait) {
+  .backdrop {
+    height: 62svh;
+  }
+
+  .fallback {
+    inset: 4% -20% 18%;
+    opacity: 0.55;
+  }
+
+  .vignette {
+    background: linear-gradient(180deg, transparent 45%, var(--bg) 100%);
+  }
+}

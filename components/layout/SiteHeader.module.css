@@ -1,0 +1,204 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.scrolled {
+  background: rgba(var(--bg-rgb), 0.96);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--line);
+}
+
+.inner {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 10px;
+}
+
+.logoMark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  border-radius: 9px;
+  background: var(--bg);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Sits inside the mark so it never breaks the border or needs a cut-out ring. */
+.logoDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.logoName {
+  font-size: 0.95rem;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cta {
+  margin-left: 10px;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  border-radius: 999px;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover,
+.navLink[aria-current='location'] {
+  color: var(--text);
+}
+
+.navLink[aria-current='location']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  border-radius: 10px;
+}
+
+.toggleBar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.toggle[aria-expanded='true'] .toggleBar:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.toggle[aria-expanded='true'] .toggleBar:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.mobileMenu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px var(--gutter) calc(32px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+.mobileMenu[hidden] {
+  display: none;
+}
+
+.mobileList li {
+  border-bottom: 1px solid var(--line);
+  animation: menuIn 0.5s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 40ms);
+}
+
+.mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.mobileLink span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.mobileMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (max-width: 899px) {
+  .nav {
+    display: none;
+  }
+  .toggle {
+    display: grid;
+  }
+}

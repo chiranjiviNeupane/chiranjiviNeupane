@@ -1,0 +1,28 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 28px calc(28px + env(safe-area-inset-bottom));
+}
+
+.inner p:last-child {
+  font-size: 0.75rem;
+}
+
+.inner a {
+  color: var(--text-soft);
+  transition: color 0.2s ease;
+}
+
+.inner a:hover {
+  color: var(--accent);
+}

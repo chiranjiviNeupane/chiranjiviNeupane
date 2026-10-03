@@ -1,0 +1,116 @@
+/* One rounded control/tag style for buttons, links, chips and tags. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-soft);
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.pill svg {
+  flex: none;
+  transition: transform 0.25s var(--ease-out);
+}
+
+/* ----- Sizes ----- */
+.sm {
+  min-height: 28px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+}
+
+.md {
+  min-height: 36px;
+  padding: 5px 13px;
+  font-size: 0.86rem;
+}
+
+.lg {
+  min-height: 48px;
+  padding: 0 22px;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.sm svg,
+.md svg {
+  width: 14px;
+  height: 14px;
+}
+
+.lg svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ----- Tones ----- */
+.outline {
+  background: rgba(var(--surface-rgb), 0.6);
+}
+
+.solid {
+  color: var(--bg);
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.accent {
+  color: var(--text);
+  border-color: rgba(var(--accent-rgb), 0.35);
+}
+
+/* Static tags (not interactive): square-ish, mono. */
+.tag {
+  min-height: 0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: rgba(var(--surface-rgb), 0.6);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ----- Interaction ----- */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:active {
+  transform: translateY(1px);
+}
+
+.outline.interactive:hover,
+.accent.interactive:hover,
+.interactive[aria-expanded='true'],
+.interactive[data-state='related'] {
+  color: var(--text);
+  border-color: rgba(var(--accent-rgb), 0.6);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+.solid.interactive:hover {
+  background: #ffffff;
+}
+
+.solid.interactive:hover svg:last-child {
+  transform: translateX(3px);
+}
+
+.interactive[data-state='active'] {
+  color: var(--bg);
+  border-color: var(--signal);
+  background: var(--signal);
+}
